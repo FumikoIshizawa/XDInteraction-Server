@@ -1,80 +1,84 @@
 var WebSocketServer = require('ws').Server;
 
-init_server = new WebSocketServer({port:5001});
+XDserver = new WebSocketServer({port:5001});
 console.log('open initserver');
 
-// com_server = new WebSocketServer({port:5002});
-// console.log('open comserver');
-
-function user(id, name, device, ws) {
-    this.id = id;
+function user(name, device, ws) {
     this.name = name;
     this.device = device;
     this.ws = ws;
 }
 
 var connections = {};
-var connection_count = 0;
+// setInterval(disconnect_check, 10000);
 
-// initialize client's setting
-// Protocol: 'open' {type, name, device}
-// 'com' {type, command, detail, dst, origin}
-init_server.on('connection', function(ws) {
+XDserver.on('connection', function(ws) {
         
     ws.on('message', function(data) {
-        console.log(data);
         var parsed_data = JSON.parse(data);
 
-        console.log('received %s', parsed_data.type);
+        // Initialize Client's setting
+        // Protocol: initialize {type = 'open', name, device}
         if (parsed_data.type == 'open') {
-            connections[connection_count] = new user(connection_count, parsed_data.name, parsed_data.device, ws);
-            connection_count = connection_count + 1; 
-
-            // Return the lists of connection devices and its device's name
+            console.log('Connected: ' + data);
+            connections[parsed_data.name] = new user(parsed_data.name, parsed_data.device, ws);
             broadcast_userdata(user_list()) ;
+
+        // Communication between clients
+        // communication {type = 'com', command, detail, dst, origin}
         } else if (parsed_data.type == 'com') {
-            console.log('received: %s, %s', parsed_data.command, parsed_data.detail);
+            console.log('Communication: ' + data);
             send_command(parsed_data);
         }
     });
+
+    ws.on('close', function(code, message) {
+        for (var key in connections) {
+            if (connections[key].ws == ws) {
+                console.log('Disconnect: ' + connections[key].name);
+                delete connections[key];
+                break;
+            }
+        }
+
+        broadcast_userdata(user_list());
+    });
 });
 
+// Return the lists of connection devices and its device's name
 function user_list() {　
-    var array_id = [];
     var array_name = [];
     var array_device = [];
 
-    for (var i = 0; i < connection_count; i++) {
-        array_id.push(connections[i].id);
-        array_name.push(connections[i].name);
-        array_device.push(connections[i].device);
+    for (var key in connections) {
+        array_name.push(connections[key].name);
+        array_device.push(connections[key].device);
     }
-    var data = {type:'users', yourid:connection_count - 1, ids:array_id, names:array_name, devices:array_device};
-    console.log(data);
+    var data = {type:'users', names:array_name, devices:array_device};
     return data;
 };
 
+// Return User data {type = 'users', yourid, ids, names, devices}
 function broadcast_userdata(data) {
-    for (var i = 0; i < connection_count; i++) {
-        connections[i].ws.send(JSON.stringify(data));
+    for (var key in connections) {
+        connections[key].ws.send(JSON.stringify(data));
     }
 };
 
 function send_command(data) {
-    if (data.command == 'swipe' || data.command == 'key' || data.command == 'mouse') {
-        connections[data.dst].ws.send(JSON.stringify({type:data.command, 
-                                                      detail:data.detail, 
-                                                      origin:data.origin}));
+    if (!(data.dst in connections)) {
+        connections[data.origin].ws.send(JSON.stringify({type:'error', 
+                                                         number: '0',
+                                                         detail: 'There is no such client:' + data.dst}));
+        console.log('Error: connect to no exist client: ' + data.origin + ' -> ' + data.dst);
+        return;
+    }
+
+    if (data.command == 'swipe' || data.command == 'key' || data.command == 'mouse' || data.command == 'click') {
+        if (connections.hasOwnProperty(data.dst)) {
+            connections[data.dst].ws.send(JSON.stringify({type:data.command, 
+                                                          detail:data.detail, 
+                                                          origin:data.origin}));
+        }
     } 
 };
-
-// com_server.on('connection', function(ws) {
-//     ws.on('message', function(message) {
-//         console.log('received: %s', message);
-//         message = 'User1: ' + message;
-
-//         ws.send(message);
-
-//     });
-
-// });
