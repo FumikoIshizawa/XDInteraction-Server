@@ -15,20 +15,27 @@ var connections = {};
 XDserver.on('connection', function(ws) {
         
     ws.on('message', function(data) {
-        var parsed_data = JSON.parse(data);
+        try {
+            var parsed_data = JSON.parse(data);
 
-        // Initialize Client's setting
-        // Protocol: initialize {type = 'open', name, device}
-        if (parsed_data.type == 'open') {
-            console.log('Connected: ' + data);
-            connections[parsed_data.name] = new user(parsed_data.name, parsed_data.device, ws);
-            broadcast_userdata(user_list()) ;
+            // Initialize Client's setting
+            // Protocol: initialize {type = 'open', name, device}
+            if (parsed_data.type == 'open') {
+                console.log('Connected: ' + data);
+                connections[parsed_data.name] = new user(parsed_data.name, parsed_data.device, ws);
+                broadcast_userdata(user_list()) ;
 
-        // Communication between clients
-        // communication {type = 'com', command, detail, dst, origin}
-        } else if (parsed_data.type == 'com') {
-            console.log('Communication: ' + data);
-            send_command(parsed_data);
+            // Communication between clients
+            // communication {type = 'com', command, detail, dst, origin}
+            } else if (parsed_data.type == 'com') {
+                console.log('Communication: ' + data);
+                send_command(parsed_data);
+            }
+        } catch (e) {
+            connections[data.origin].ws.send(JSON.stringify({type:'error', 
+                                                         number: '1',
+                                                         detail: 'Please send JSON message.'}));
+            console.log('Error: This is not JSON style from ' + data.origin);
         }
     });
 
