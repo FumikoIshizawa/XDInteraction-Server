@@ -44,7 +44,7 @@ XDserver.on('connection', function(ws) {
             if (connections[key].ws == ws) {
                 console.log('Disconnect: ' + connections[key].name);
                 delete connections[key];
-                break;
+                break; 
             }
         }
 
@@ -80,12 +80,17 @@ function send_command(data) {
         console.log('Error: connect to no exist client: ' + data.origin + ' -> ' + data.dst);
         return;
     }
+    // TODO: data.commandを配列に格納し、次のif文を作らずに、別でコマンドが存在するかを確認する
 
-    if (data.command == 'swipe' || data.command == 'key' || data.command == 'mouse' || data.command == 'click') {
+    if (data.command == 'click' || data.command == 'swipe' || data.command == 'key' || data.command == 'pinch') {
         if (connections.hasOwnProperty(data.dst)) {
             connections[data.dst].ws.send(JSON.stringify({type:data.command, 
                                                           detail:data.detail, 
                                                           origin:data.origin}));
         }
-    } 
+    } else if (data.command == 'point') {
+        if (connection.hasOwnProperty(data.dst)) {
+            connections[data.dst].ws.send(JSON.stringify({type:data.command, x:data.x, y:data.y, origin:data.origin}));
+        }
+    }
 };
