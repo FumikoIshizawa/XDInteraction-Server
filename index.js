@@ -81,11 +81,8 @@ function send_command(data) {
         return;
     }
 
-    if (data.command == 'click' || data.command == 'swipe' || data.command == 'key' || data.command == 'pinch') {
+    if (data.command == 'scroll' || data.command == 'zoom' || data.command == 'text' || data.command == 'page') {
         connections[data.dst].ws.send(JSON.stringify({type:data.command, 
                                                       detail:data.detail, 
                                                       origin:data.origin}));
-    } else if (data.command == 'point') {
-        connections[data.dst].ws.send(JSON.stringify({type:data.command, x:data.x, y:data.y, origin:data.origin}));
-    }
 };
