@@ -83,6 +83,8 @@ function send_command(data) {
 
     if (data.command == 'scroll' || data.command == 'zoom' || data.command == 'text' || data.command == 'page') {
         connections[data.dst].ws.send(JSON.stringify({type:data.command, 
-                                                      detail:data.detail, 
+                                                      detail:data.detail,
+                                                      window: data.window, 
                                                       origin:data.origin}));
+    }
 };
