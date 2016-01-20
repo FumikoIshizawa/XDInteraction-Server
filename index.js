@@ -15,6 +15,8 @@ var connections = {};
 XDserver.on('connection', function(ws) {
         
     ws.on('message', function(data) {
+        // TODO: json以外が来たらhandling
+        console.log(data)
         try {
             var parsed_data = JSON.parse(data);
 
@@ -32,10 +34,14 @@ XDserver.on('connection', function(ws) {
                 send_command(parsed_data);
             }
         } catch (e) {
-            connections[data.origin].ws.send(JSON.stringify({type:'error', 
-                                                         number: '1',
-                                                         detail: 'Please send JSON message.'}));
-            console.log('Error: This is not JSON style from ' + data.origin);
+            try {
+                connections[data.origin].ws.send(JSON.stringify({type:'error',
+                                                                 number: '1',
+                                                                 detail: 'Please send JSON message.'}));
+                console.log('Error: This is not JSON style from ' + data.origin);
+            } catch (e) {
+                console.log('Error: origin user is not defined.')
+            }
         }
     });
 
@@ -74,7 +80,7 @@ function broadcast_userdata(data) {
 
 function send_command(data) {
     if (!(data.dst in connections)) {
-        connections[data.origin].ws.send(JSON.stringify({type:'error', 
+        connections[data.origin].ws.send(JSON.stringify({type:'error',
                                                          number: '0',
                                                          detail: 'There is no such client:' + data.dst}));
         console.log('Error: connect to no exist client: ' + data.origin + ' -> ' + data.dst);
@@ -82,9 +88,10 @@ function send_command(data) {
     }
 
     if (data.command == 'scroll' || data.command == 'zoom' || data.command == 'text' || data.command == 'page') {
-        connections[data.dst].ws.send(JSON.stringify({type:data.command, 
-                                                      detail:data.detail,
+        connections[data.dst].ws.send(JSON.stringify({type: 'com',
+                                                      command: data.command,
+                                                      detail: data.detail,
                                                       window: data.window, 
-                                                      origin:data.origin}));
+                                                      origin: data.origin}));
     }
 };
