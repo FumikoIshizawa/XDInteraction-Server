@@ -12,33 +12,36 @@ function user(name, device, ws) {
 var connections = {};
 // setInterval(disconnect_check, 10000);
 
+var log4js = require('log4js');
+log4js.configure('logger.json');
+var biplogger = log4js.getLogger('bip');
+var actionLogger = log4js.getLogger('action');
+
+
 XDserver.on('connection', function(ws) {
         
     ws.on('message', function(data) {
-        // TODO: json以外が来たらhandling
-        console.log(data)
+        //console.log(data)
         try {
             var parsed_data = JSON.parse(data);
 
-            // Initialize Client's setting
-            // Protocol: initialize {type = 'open', name, device}
             if (parsed_data.type == 'open') {
                 console.log('Connected: ' + data);
                 connections[parsed_data.name] = new user(parsed_data.name, parsed_data.device, ws);
                 broadcast_userdata(user_list()) ;
-
-            // Communication between clients
-            // communication {type = 'com', command, detail, dst, origin}
             } else if (parsed_data.type == 'com') {
                 console.log('Communication: ' + data);
                 send_command(parsed_data);
+            } else if (parsed_data.type == 'bip') {
+                console.log('Actions: changed');
+                bip_log(data, parsed_data.origin);
             }
         } catch (e) {
             try {
                 connections[data.origin].ws.send(JSON.stringify({type:'error',
                                                                  number: '1',
                                                                  detail: 'Please send JSON message.'}));
-                console.log('Error: This is not JSON style from ' + data.origin);
+                console.log('Error: this is not JSON style from ' + data.origin);
             } catch (e) {
                 console.log('Error: origin user is not defined.')
             }
@@ -88,10 +91,25 @@ function send_command(data) {
     }
 
     if (data.command == 'scroll' || data.command == 'zoom' || data.command == 'text' || data.command == 'page') {
-        connections[data.dst].ws.send(JSON.stringify({type: 'com',
+        if (data.window == '1' || data.window == 'both') {
+            connections[data.dst].ws.send(JSON.stringify({type: 'com',
                                                       command: data.command,
                                                       detail: data.detail,
-                                                      window: data.window, 
+                                                      window: '1', 
                                                       origin: data.origin}));
+            actionLogger.info('command: ' + data.command + ' ' + data.detail + ' (window1) from ' + data.origin + ' to ' + data.dst);
+        } 
+        if (data.window == '2' || data.window == 'both') {
+            connections[data.dst].ws.send(JSON.stringify({type: 'com',
+                                                      command: data.command,
+                                                      detail: data.detail,
+                                                      window: '2', 
+                                                      origin: data.origin}));
+            actionLogger.info('command: ' + data.command + ' ' + data.detail + ' (window2) from ' + data.origin + ' to ' + data.dst);
+        } 
     }
 };
+
+function bip_log(data, origin) {
+    biplogger.info(origin + '\'s BIP\n' + data);   
+}

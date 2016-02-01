@@ -1,0 +1,18 @@
+{
+    "appenders": [
+        {
+            "type": "dateFile",
+            "category": "bip",
+            "filename": "./log/bip",
+            "pattern": "yyyyMMdd.log",
+            "alwaysIncludePattern": "true"
+        },
+        {
+            "type": "dateFile",
+            "category": "action",
+            "filename": "./log/action",
+            "pattern": "yyyyMMdd.log",
+            "alwaysIncludePattern": "true"
+        }
+    ]
+}
