@@ -90,7 +90,7 @@ function send_command(data) {
         return;
     }
 
-    if (data.command == 'scroll' || data.command == 'zoom' || data.command == 'text' || data.command == 'page') {
+    if (data.command == 'scroll' || data.command == 'size' || data.command == 'text' || data.command == 'page') {
         if (data.window == '1' || data.window == 'both') {
             connections[data.dst].ws.send(JSON.stringify({type: 'com',
                                                       command: data.command,
@@ -111,5 +111,5 @@ function send_command(data) {
 };
 
 function bip_log(data, origin) {
-    biplogger.info(origin + '\'s BIP\n' + data);   
+    biplogger.info(origin + '\n' + data);   
 }
