@@ -1,0 +1,4 @@
+[2016-03-16 12:11:36.497] [INFO] action - Connected: iphonesimu
+[2016-03-16 12:11:51.254] [INFO] action - Disconnect: iphonesimu
+[2016-03-16 12:16:41.216] [INFO] action - Connect: iPad
+[2016-03-16 12:16:52.766] [INFO] action - Disconnect: iPad

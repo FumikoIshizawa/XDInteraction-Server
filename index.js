@@ -26,15 +26,27 @@ XDserver.on('connection', function(ws) {
             var parsed_data = JSON.parse(data);
 
             if (parsed_data.type == 'open') {
-                console.log('Connected: ' + data);
+                console.log('Connecte Device: ' + data);
                 connections[parsed_data.name] = new user(parsed_data.name, parsed_data.device, ws);
-                broadcast_userdata(user_list()) ;
+                broadcast_userdata(user_list());
             } else if (parsed_data.type == 'com') {
                 console.log('Communication: ' + data);
                 send_command(parsed_data);
             } else if (parsed_data.type == 'bip') {
                 console.log('Actions: changed');
                 bip_log(data, parsed_data.origin);
+            } else if (parsed_data.type == 'connect') {
+                var message = 'Connection Start: ' + parsed_data.from + ' to ' + parsed_data.to;
+                console.log(message);
+                actionLogger.info(message);
+                biplogger.info(message);
+                connections[parsed_data.from].ws.send(JSON.stringify({type:'connected'}));
+            } else if (parsed_data.type == 'disconnect') {
+                var message = 'Connection End: ' + parsed_data.from + ' to ' + parsed_data.to;
+                console.log(message);
+                actionLogger.info(message);
+                biplogger.info(message);
+                connections[parsed_data.from].ws.send(JSON.stringify({type:'disconnected'}));
             }
         } catch (e) {
             try {
@@ -51,7 +63,7 @@ XDserver.on('connection', function(ws) {
     ws.on('close', function(code, message) {
         for (var key in connections) {
             if (connections[key].ws == ws) {
-                console.log('Disconnect: ' + connections[key].name);
+                console.log('Disconnect Device: ' + connections[key].name);
                 delete connections[key];
                 break; 
             }

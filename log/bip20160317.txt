@@ -1,0 +1,38 @@
+[2016-03-17 00:53:07.953] [INFO] bip - Connect: sample
+[2016-03-17 00:53:13.656] [INFO] bip - sample
+{"GyroUp":{"action":"Scroll Up","window":0},"GyroDown":{"action":"Scroll Down","window":0},"SwipeUp":{"action":"Text Big","window":0},"SingleTap":{"action":"No Gesture","window":0},"DoubleTap":{"action":"No Gesture","window":0},"ButtonRight":{"action":"No Gesture","window":0},"SwipeRight":{"action":"Back Page","window":0},"ButtonLeft":{"action":"No Gesture","window":0},"PinchOut":{"action":"Size Down","window":0},"PinchIn":{"action":"Size Up","window":0},"type":"bip","SwipeDown":{"action":"Text Small","window":0},"SwipeLeft":{"action":"Next Page","window":0},"origin":"sample"}
+[2016-03-17 00:57:31.813] [INFO] bip - Connect: sample
+[2016-03-17 00:57:55.134] [INFO] bip - sample
+{"GyroUp":{"action":"Scroll Up","window":0},"GyroDown":{"action":"Text Big","window":2},"SwipeUp":{"action":"Text Big","window":0},"SingleTap":{"action":"No Gesture","window":0},"DoubleTap":{"action":"No Gesture","window":0},"ButtonRight":{"action":"No Gesture","window":0},"SwipeRight":{"action":"Back Page","window":0},"ButtonLeft":{"action":"No Gesture","window":0},"PinchOut":{"action":"Size Down","window":0},"PinchIn":{"action":"Size Up","window":0},"type":"bip","SwipeDown":{"action":"Text Small","window":0},"SwipeLeft":{"action":"Next Page","window":0},"origin":"sample"}
+[2016-03-17 00:58:05.415] [INFO] bip - sample
+{"GyroUp":{"action":"Scroll Down","window":0},"GyroDown":{"action":"Text Big","window":2},"SwipeUp":{"action":"Text Big","window":0},"SingleTap":{"action":"No Gesture","window":0},"DoubleTap":{"action":"No Gesture","window":0},"ButtonRight":{"action":"No Gesture","window":0},"SwipeRight":{"action":"Back Page","window":0},"ButtonLeft":{"action":"No Gesture","window":0},"PinchOut":{"action":"Size Down","window":0},"PinchIn":{"action":"Size Up","window":0},"type":"bip","SwipeDown":{"action":"Text Small","window":0},"SwipeLeft":{"action":"Next Page","window":0},"origin":"sample"}
+[2016-03-17 00:59:06.281] [INFO] bip - sample
+{"GyroUp":{"action":"Scroll Down","window":0},"GyroDown":{"action":"Text Big","window":2},"SwipeUp":{"action":"Text Big","window":0},"SingleTap":{"action":"No Gesture","window":0},"DoubleTap":{"action":"No Gesture","window":0},"ButtonRight":{"action":"No Gesture","window":0},"SwipeRight":{"action":"Back Page","window":0},"ButtonLeft":{"action":"No Gesture","window":0},"PinchOut":{"action":"Size Down","window":0},"PinchIn":{"action":"Size Up","window":0},"type":"bip","SwipeDown":{"action":"Text Small","window":0},"SwipeLeft":{"action":"Next Page","window":0},"origin":"sample"}
+[2016-03-17 00:59:12.830] [INFO] bip - sample
+{"GyroUp":{"action":"Scroll Down","window":0},"GyroDown":{"action":"No Gesture","window":2},"SwipeUp":{"action":"Text Big","window":0},"SingleTap":{"action":"No Gesture","window":0},"DoubleTap":{"action":"No Gesture","window":0},"ButtonRight":{"action":"No Gesture","window":0},"SwipeRight":{"action":"Back Page","window":0},"ButtonLeft":{"action":"No Gesture","window":0},"PinchOut":{"action":"Size Down","window":0},"PinchIn":{"action":"Size Up","window":0},"type":"bip","SwipeDown":{"action":"Text Small","window":0},"SwipeLeft":{"action":"Next Page","window":0},"origin":"sample"}
+[2016-03-17 01:01:27.525] [INFO] bip - Connect: undefined
+[2016-03-17 01:01:37.666] [INFO] bip - sample
+{"GyroUp":{"action":"Scroll Up","window":0},"GyroDown":{"action":"Text Big","window":2},"SwipeUp":{"action":"Text Big","window":0},"SingleTap":{"action":"No Gesture","window":0},"DoubleTap":{"action":"No Gesture","window":0},"ButtonRight":{"action":"No Gesture","window":0},"SwipeRight":{"action":"Back Page","window":0},"ButtonLeft":{"action":"No Gesture","window":0},"PinchOut":{"action":"Size Down","window":0},"PinchIn":{"action":"Size Up","window":0},"type":"bip","SwipeDown":{"action":"Text Small","window":0},"SwipeLeft":{"action":"Next Page","window":0},"origin":"sample"}
+[2016-03-17 01:01:49.439] [INFO] bip - Connect: undefined
+[2016-03-17 01:05:41.889] [INFO] bip - Connection Start: sample to sample
+[2016-03-17 01:05:50.416] [INFO] bip - Connection End: sample to sample
+[2016-03-17 01:16:21.674] [INFO] bip - Connection Start: sample to sample
+[2016-03-17 01:16:22.981] [INFO] bip - Connection End: sample to sample
+[2016-03-17 01:16:23.731] [INFO] bip - Connection Start: sample to sample
+[2016-03-17 01:16:24.998] [INFO] bip - Connection End: sample to sample
+[2016-03-17 01:16:26.405] [INFO] bip - Connection Start: sample to sample
+[2016-03-17 01:16:27.673] [INFO] bip - Connection End: sample to sample
+[2016-03-17 01:16:28.979] [INFO] bip - Connection Start: sample to sample
+[2016-03-17 01:16:31.991] [INFO] bip - Connection End: sample to sample
+[2016-03-17 01:28:18.645] [INFO] bip - Connection Start: sample to sample
+[2016-03-17 01:28:35.519] [INFO] bip - sample
+{"GyroUp":{"action":"Size Up","window":2},"GyroDown":{"action":"Scroll Down","window":0},"SwipeUp":{"action":"Text Big","window":0},"SingleTap":{"action":"No Gesture","window":0},"DoubleTap":{"action":"No Gesture","window":0},"ButtonRight":{"action":"Size Down","window":1},"SwipeRight":{"action":"Back Page","window":0},"ButtonLeft":{"action":"No Gesture","window":0},"PinchOut":{"action":"Size Down","window":0},"PinchIn":{"action":"Size Up","window":0},"type":"bip","SwipeDown":{"action":"Text Small","window":0},"SwipeLeft":{"action":"Next Page","window":0},"origin":"sample"}
+[2016-03-17 01:28:46.419] [INFO] bip - Connection End: sample to sample
+[2016-03-17 01:32:50.759] [INFO] bip - Connection Start: sample to sample
+[2016-03-17 01:32:59.396] [INFO] bip - Connection End: sample to sample
+[2016-03-17 01:33:04.786] [INFO] bip - Connection Start: sample to sample
+[2016-03-17 01:33:11.307] [INFO] bip - sample
+{"GyroUp":{"action":"Scroll Up","window":0},"GyroDown":{"action":"Text Big","window":2},"SwipeUp":{"action":"Text Big","window":0},"SingleTap":{"action":"No Gesture","window":0},"DoubleTap":{"action":"No Gesture","window":0},"ButtonRight":{"action":"No Gesture","window":0},"SwipeRight":{"action":"Back Page","window":0},"ButtonLeft":{"action":"No Gesture","window":0},"PinchOut":{"action":"Size Down","window":0},"PinchIn":{"action":"Size Up","window":0},"type":"bip","SwipeDown":{"action":"Text Small","window":0},"SwipeLeft":{"action":"Next Page","window":0},"origin":"sample"}
+[2016-03-17 01:33:24.986] [INFO] bip - Connection End: sample to sample
+[2016-03-17 01:33:35.067] [INFO] bip - Connection Start: sample to sample
+[2016-03-17 01:33:43.310] [INFO] bip - Connection End: sample to sample
