@@ -1,0 +1,13 @@
+[2016-03-19 13:40:22.589] [INFO] action - Connection Start: sample to sample
+[2016-03-19 13:40:26.348] [INFO] action - command: page next (window1) from sample to sample
+[2016-03-19 13:40:26.966] [INFO] action - command: page back (window1) from sample to sample
+[2016-03-19 13:40:36.978] [INFO] action - command: page next (window1) from sample to sample
+[2016-03-19 13:40:45.159] [INFO] action - Connection End: sample to sample
+[2016-03-19 13:40:55.198] [INFO] action - Connection Start: sample to sample
+[2016-03-19 14:11:27.177] [INFO] action - Connection Start: sample to sample
+[2016-03-19 14:18:11.949] [INFO] action - Custom Message: assdd(test)
+[2016-03-19 14:18:25.404] [INFO] action - Connection Start: test to test
+[2016-03-19 14:18:32.296] [INFO] action - command: page next (window1) from test to test
+[2016-03-19 14:18:32.930] [INFO] action - command: page back (window1) from test to test
+[2016-03-19 14:18:43.068] [INFO] action - Custom Message: あpsdkfgj(test)
+[2016-03-19 14:18:48.851] [INFO] action - Connection End: test to test

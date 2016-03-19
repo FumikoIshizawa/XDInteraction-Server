@@ -47,6 +47,11 @@ XDserver.on('connection', function(ws) {
                 actionLogger.info(message);
                 biplogger.info(message);
                 connections[parsed_data.from].ws.send(JSON.stringify({type:'disconnected'}));
+            } else if (parsed_data.type == 'custom') {
+                var message = 'Custom Message: ' + parsed_data.detail + '(' + parsed_data.from + ')';
+                console.log(message);
+                actionLogger.info(message);
+                biplogger.info(message);
             }
         } catch (e) {
             try {

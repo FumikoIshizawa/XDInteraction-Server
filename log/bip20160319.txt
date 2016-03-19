@@ -1,0 +1,8 @@
+[2016-03-19 13:40:22.597] [INFO] bip - Connection Start: sample to sample
+[2016-03-19 13:40:45.160] [INFO] bip - Connection End: sample to sample
+[2016-03-19 13:40:55.199] [INFO] bip - Connection Start: sample to sample
+[2016-03-19 14:11:27.199] [INFO] bip - Connection Start: sample to sample
+[2016-03-19 14:18:11.953] [INFO] bip - Custom Message: assdd(test)
+[2016-03-19 14:18:25.405] [INFO] bip - Connection Start: test to test
+[2016-03-19 14:18:43.068] [INFO] bip - Custom Message: あpsdkfgj(test)
+[2016-03-19 14:18:48.851] [INFO] bip - Connection End: test to test
