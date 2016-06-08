@@ -36,13 +36,13 @@ XDserver.on('connection', function(ws) {
                 console.log('Actions: changed');
                 bip_log(data, parsed_data.origin);
             } else if (parsed_data.type == 'connect') {
-                var message = 'Connection Start: ' + parsed_data.from + ' to ' + parsed_data.to;
+                var message = 'Start logging: ' + parsed_data.from + ' to ' + parsed_data.to;
                 console.log(message);
                 actionLogger.info(message);
                 biplogger.info(message);
                 connections[parsed_data.from].ws.send(JSON.stringify({type:'connected'}));
             } else if (parsed_data.type == 'disconnect') {
-                var message = 'Connection End: ' + parsed_data.from + ' to ' + parsed_data.to;
+                var message = 'Stop logging: ' + parsed_data.from + ' to ' + parsed_data.to;
                 console.log(message);
                 actionLogger.info(message);
                 biplogger.info(message);
